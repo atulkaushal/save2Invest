@@ -69,12 +69,17 @@ public class Save2InvestController {
      * @param qrCode the qr code
      * @return the brands from qr code
      */
-    @RequestMapping(value = "/getBrandsFromQRCode",
+    @RequestMapping(value = "/getStockQuoteByQRCode",
             method = RequestMethod.POST,
             produces = {MediaType.APPLICATION_JSON_VALUE},
-            consumes = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<String> getBrandsFromQRCode(@RequestBody File qrCode) {
-        return new ResponseEntity<String>(qrCodeService.readQRCode(qrCode), HttpStatus.OK);
+            consumes = {MediaType.IMAGE_PNG_VALUE, MediaType.IMAGE_JPEG_VALUE})
+    public ResponseEntity<QuoteResponse> getStockQuoteByQRCode(@RequestBody byte[] qrCode) {
+        String ticker= qrCodeService.readQRCode(qrCode);
+        if(ticker!=null)
+        {
+            return new ResponseEntity<QuoteResponse>(tickerService.getQuoteByTicker(ticker), HttpStatus.OK);
+        }
+        return null;
     }
 
     /**

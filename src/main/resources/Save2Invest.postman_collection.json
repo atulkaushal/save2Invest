@@ -1,0 +1,167 @@
+{
+	"info": {
+		"_postman_id": "ba49fc1b-9fbf-4dc5-8934-82ce38ed02c4",
+		"name": "Save2Invest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2161101"
+	},
+	"item": [
+		{
+			"name": "getAllInfoForBrandsInImage",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "file",
+					"file": {
+						"src": "/C:/Users/kaushalm/IdeaProjects/save2invest/src/main/resources/Tesla.jpg"
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/getAllInfoForBrandsInImage",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"getAllInfoForBrandsInImage"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getBrandsFromImage",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "file",
+					"file": {}
+				},
+				"url": {
+					"raw": "http://localhost:8080/getBrandsFromImage",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"getBrandsFromImage"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getStockNewsByTicker",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"ticker\": \"SBUX\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/getStockNewsByTicker",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"getStockNewsByTicker"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getCompanyProfileByTicker",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"ticker\": \"SBUX\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/getCompanyProfileByTicker",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"getCompanyProfileByTicker"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getQuotesByTicker",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"ticker\": \"SBUX\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/getQuotesByTicker",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"getQuotesByTicker"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getStockQuoteByQRCode",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "file",
+					"file": {
+						"src": "/C:/Users/kaushalm/IdeaProjects/save2invest/src/main/resources/Adobe_QR.PNG"
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/getStockQuoteByQRCode",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"getStockQuoteByQRCode"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

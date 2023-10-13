@@ -59,8 +59,6 @@ public class ImageServiceImpl implements ImageService {
         // This list defines the features to be extracted from the image.
         List<VisualFeatureTypes> featuresToExtractFromRemoteImage = new ArrayList<>();
         featuresToExtractFromRemoteImage.add(VisualFeatureTypes.BRANDS);
-        //featuresToExtractFromRemoteImage.add(VisualFeatureTypes.TAGS);
-        featuresToExtractFromRemoteImage.add(VisualFeatureTypes.OBJECTS);
 
         System.out.println("\n\nAnalyzing an image...");
 
@@ -75,25 +73,7 @@ public class ImageServiceImpl implements ImageService {
                 System.out.printf("\'%s\' with confidence %f\n", tag.name(), tag.confidence());
                 brandMap.put(tag.name(), Double.valueOf(tag.confidence() * 100).intValue());
             }
-            System.out.println("\nDetectedObject: ");
-            for (DetectedObject tag : analysis.objects()) {
-                System.out.printf("\'%s\' with confidence %f\n", tag.objectProperty(), tag.confidence());
-            }
 
-            // Display image tags and confidence values.
-           /* System.out.println("\nImageTags: ");
-            for (ImageTag tag : analysis.tags()) {
-                System.out.printf("\'%s\' with confidence %f\n", tag.name(), tag.confidence());
-                //brandMap.put(tag.name(), Double.valueOf(tag.confidence() * 100).intValue());
-            }
-
-
-
-            // Display image captions and confidence values.
-            System.out.println("\nCaptions: ");
-            for (ImageCaption caption : analysis.description().captions()) {
-                System.out.printf("\'%s\' with confidence %f\n", caption.text(), caption.confidence());
-            }*/
         } catch (Exception e) {
             System.out.println(e.getMessage());
             e.printStackTrace();

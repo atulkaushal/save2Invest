@@ -12,5 +12,5 @@ public interface QRCodeService {
      * @param qrFile the qr file
      * @return the string
      */
-    String readQRCode(File qrFile);
+    String readQRCode(byte[] qrFile);
 }
