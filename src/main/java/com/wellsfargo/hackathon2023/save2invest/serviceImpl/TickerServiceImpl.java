@@ -1,5 +1,7 @@
 package com.wellsfargo.hackathon2023.save2invest.serviceImpl;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.wellsfargo.hackathon2023.save2invest.entity.response.CompanyProfileResponse;
 import com.wellsfargo.hackathon2023.save2invest.entity.response.QuoteResponse;
 import com.wellsfargo.hackathon2023.save2invest.entity.response.StockNewsResponse;
@@ -50,6 +52,8 @@ public class TickerServiceImpl implements TickerService {
     @Autowired
     RestTemplate restTemplate;
 
+    ObjectMapper mapper = new ObjectMapper();
+
     @Override
     public List<TickerResponse> getTickersByOrganizationName(String orgName) {
         List<TickerResponse> orgList = null;
@@ -65,7 +69,7 @@ public class TickerServiceImpl implements TickerService {
         CompanyProfileResponse details = null;
         ResponseEntity<List> responseEntity = restTemplate.getForEntity(String.format(companyProfileEndPoint, ticker), List.class);
         if (HttpStatus.OK.equals(responseEntity.getStatusCode()) && responseEntity.getBody() != null) {
-            details = (CompanyProfileResponse) responseEntity.getBody().get(0);
+            details = mapper.convertValue(responseEntity.getBody().get(0),new TypeReference<CompanyProfileResponse>(){});
         }
         return details;
     }
@@ -88,7 +92,7 @@ public class TickerServiceImpl implements TickerService {
         QuoteResponse details = null;
         ResponseEntity<List> responseEntity = restTemplate.getForEntity(String.format(quoteEndPoint, ticker), List.class);
         if (HttpStatus.OK.equals(responseEntity.getStatusCode()) && responseEntity.getBody() != null) {
-            details = (QuoteResponse) responseEntity.getBody().get(0);
+            details = mapper.convertValue(responseEntity.getBody().get(0),new TypeReference<QuoteResponse>(){});
         }
         return details;
     }
