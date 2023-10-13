@@ -1,0 +1,43 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '2.7.16'
+    id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+}
+
+group = 'com.wellsfargo.hackathon2023'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    sourceCompatibility = '11'
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web-services'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation "com.microsoft.azure.cognitiveservices:azure-cognitiveservices-computervision:1.0.9-beta"
+    implementation "com.azure:azure-ai-vision-common:0.15.1-beta.1"
+    implementation group: 'com.azure', name: 'azure-ai-vision-imageanalysis', version: '0.15.1-beta.1'
+    testImplementation 'com.azure:azure-core-http-okhttp:1.11.14'
+    implementation 'com.google.zxing:core:3.5.2'
+    implementation 'com.google.zxing:javase:3.5.2'
+    implementation 'org.springdoc:springdoc-openapi-ui:1.6.12'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
