@@ -1,0 +1,16 @@
+[
+    {
+        "symbol": "TSLA",
+        "name": "Tesla, Inc.",
+        "currency": "USD",
+        "stockExchange": "NASDAQ Global Select",
+        "exchangeShortName": "NASDAQ"
+    },
+    {
+        "symbol": "TSL",
+        "name": "GraniteShares ETF Trust - GraniteShares 2x Long Tesla Daily ETF",
+        "currency": "USD",
+        "stockExchange": "NASDAQ Global Market",
+        "exchangeShortName": "NASDAQ"
+    }
+]
