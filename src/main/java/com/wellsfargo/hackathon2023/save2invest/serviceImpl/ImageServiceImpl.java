@@ -2,9 +2,7 @@ package com.wellsfargo.hackathon2023.save2invest.serviceImpl;
 
 import com.microsoft.azure.cognitiveservices.vision.computervision.ComputerVisionClient;
 import com.microsoft.azure.cognitiveservices.vision.computervision.ComputerVisionManager;
-import com.microsoft.azure.cognitiveservices.vision.computervision.models.DetectedBrand;
-import com.microsoft.azure.cognitiveservices.vision.computervision.models.ImageAnalysis;
-import com.microsoft.azure.cognitiveservices.vision.computervision.models.VisualFeatureTypes;
+import com.microsoft.azure.cognitiveservices.vision.computervision.models.*;
 import com.wellsfargo.hackathon2023.save2invest.entity.response.TickerResponse;
 import com.wellsfargo.hackathon2023.save2invest.service.ImageService;
 import com.wellsfargo.hackathon2023.save2invest.service.TickerService;
@@ -61,13 +59,15 @@ public class ImageServiceImpl implements ImageService {
         // This list defines the features to be extracted from the image.
         List<VisualFeatureTypes> featuresToExtractFromRemoteImage = new ArrayList<>();
         featuresToExtractFromRemoteImage.add(VisualFeatureTypes.BRANDS);
+        //featuresToExtractFromRemoteImage.add(VisualFeatureTypes.TAGS);
+        featuresToExtractFromRemoteImage.add(VisualFeatureTypes.OBJECTS);
 
         System.out.println("\n\nAnalyzing an image...");
 
         try {
             // Call the Computer Vision service and tell it to analyze the loaded image.
             ImageAnalysis analysis = compVisClient.computerVision().analyzeImageInStream().withImage(imageData)
-                    .withVisualFeatures(featuresToExtractFromRemoteImage).execute();
+                    .withVisualFeatures(featuresToExtractFromRemoteImage).withLanguage("en").execute();
 
             // Display image tags and confidence values.
             System.out.println("\nBrands: ");
@@ -75,6 +75,25 @@ public class ImageServiceImpl implements ImageService {
                 System.out.printf("\'%s\' with confidence %f\n", tag.name(), tag.confidence());
                 brandMap.put(tag.name(), Double.valueOf(tag.confidence() * 100).intValue());
             }
+            System.out.println("\nDetectedObject: ");
+            for (DetectedObject tag : analysis.objects()) {
+                System.out.printf("\'%s\' with confidence %f\n", tag.objectProperty(), tag.confidence());
+            }
+
+            // Display image tags and confidence values.
+           /* System.out.println("\nImageTags: ");
+            for (ImageTag tag : analysis.tags()) {
+                System.out.printf("\'%s\' with confidence %f\n", tag.name(), tag.confidence());
+                //brandMap.put(tag.name(), Double.valueOf(tag.confidence() * 100).intValue());
+            }
+
+
+
+            // Display image captions and confidence values.
+            System.out.println("\nCaptions: ");
+            for (ImageCaption caption : analysis.description().captions()) {
+                System.out.printf("\'%s\' with confidence %f\n", caption.text(), caption.confidence());
+            }*/
         } catch (Exception e) {
             System.out.println(e.getMessage());
             e.printStackTrace();
